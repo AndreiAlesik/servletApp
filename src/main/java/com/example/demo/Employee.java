@@ -7,6 +7,10 @@ public class Employee {
     private String country;
     private String email;
 
+    public Employee() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -36,6 +40,13 @@ public class Employee {
     }
 
     public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Employee(int id, String name, String country, String email) {
+        this.id = id;
+        this.name = name;
+        this.country = country;
         this.email = email;
     }
 
