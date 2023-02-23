@@ -7,15 +7,17 @@ import java.util.Objects;
 
 public class EmployeeRepository {
 
-    public static void main(String[] args) {
-        getConnection();
-
-        Employee employee = new Employee();
-
-        employee.setName("oleg");
-        employee.setEmail(" ");
-        employee.setCountry(" ");
-        save(employee);
+    public static void main(String[] args) throws SQLException {
+//        getConnection();
+//
+//        Employee employee = new Employee();
+//
+//        employee.setName("oleg");
+//        employee.setEmail(" ");
+//        employee.setCountry(" ");
+//        save(employee);
+//
+        System.out.println(LoginDao.checkUser("andrew", "andrew"));
     }
 
     public static Connection getConnection() {
