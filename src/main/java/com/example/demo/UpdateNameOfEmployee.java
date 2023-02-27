@@ -27,15 +27,18 @@ public class UpdateNameOfEmployee extends HttpServlet {
         Employee employee = new Employee();
         employee.setId(id);
         employee.setName(name);
-
-
+        int status=0;
         try {
-            EmployeeRepository.updateName(name, id);
+            status=EmployeeRepository.updateName(name,id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        response.getWriter();
-        out.println("OK");
+
+        if (status > 0) {
+            out.print("Record saved successfully!");
+        } else {
+            out.println("Sorry! unable to save record");
+        }
         out.close();
     }
 }

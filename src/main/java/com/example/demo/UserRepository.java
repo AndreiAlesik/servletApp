@@ -11,7 +11,7 @@ public class UserRepository {
     public UserRepository(String login, String password, String role) {
         this.login = login;
         this.password = password;
-
+        this.role=role;
     }
 
     public String getLogin() {

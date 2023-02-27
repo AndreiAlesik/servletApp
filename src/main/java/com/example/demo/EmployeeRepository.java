@@ -156,15 +156,16 @@ public class EmployeeRepository {
         connection.close();
         return rs;
     }
-    public static void getSQL(String sqlQuery, String name, int id ) throws SQLException {
+    public static int getSQL(String sqlQuery, String name, int id ) throws SQLException {
+        int status=0;
         Connection connection = EmployeeRepository.getConnection();
         PreparedStatement ps = connection.prepareStatement("update users set name=? where id=?");
         ps.setString(1, name);
         ps.setInt(2, id);
 
-        ps.executeQuery();
+        status=ps.executeUpdate();
         connection.close();
-
+        return status;
 //        connection.close();
 
     }
@@ -193,9 +194,9 @@ public class EmployeeRepository {
         return listOfEmployee;
     }
 
-    public static void updateName(String name, int id) throws SQLException {
-
-        getSQL(queryUpdate,name, id);
-
+    public static int updateName(String name, int id) throws SQLException {
+        int status=0;
+        status=getSQL(queryUpdate,name, id);
+        return status;
     }
 }
