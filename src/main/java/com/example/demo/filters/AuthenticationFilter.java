@@ -1,5 +1,7 @@
 package com.example.demo.filters;
 
+import com.example.demo.session.SessionController;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -22,31 +24,8 @@ public class AuthenticationFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
+        SessionController.setAuthorizationRights(request,response,req, res, context, chain);
 
-        PrintWriter out = res.getWriter();
-        String uri = req.getRequestURI();
-
-        this.context.log("Requested Resource::http://localhost:8080" + uri);
-
-        HttpSession session = req.getSession(false);
-
-
-        if (session != null)
-            out.println("session == " + session + ", user = " + session.getAttribute("role"));
-        else
-            out.println("session == null");
-
-
-        if (session == null && !uri.endsWith("demo/loginServlet")) {
-            out.println("You have to login!!!");
-        }
-        else if (session != null && !session.getAttribute("role").equals("admin") && !(uri.endsWith("demo/LogoutServlet") || uri.endsWith("demo/loginServlet") || uri.endsWith("demo/viewServlet"))) {
-            this.context.log("<<< Unauthorized access request");
-            out.println(session.getAttribute("role"));
-            out.println("No access!!!");
-        } else {
-            chain.doFilter(request, response);
-        }
     }
 
     public void destroy() {

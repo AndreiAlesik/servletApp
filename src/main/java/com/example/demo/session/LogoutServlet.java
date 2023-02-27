@@ -35,7 +35,7 @@ public class LogoutServlet extends HttpServlet {
             session.invalidate();
         }
         PrintWriter out = response.getWriter();
-//        out.println("Either user name or password is wrong!");
+        out.println("Operation successful");
     }
 
 }
